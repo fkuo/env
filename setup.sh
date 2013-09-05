@@ -40,3 +40,5 @@ git clone https://github.com/joyent/node-manta.git ~/node-manta
 # vim
 cp vimrc ~/.vimrc
 git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+
+source ~/.profile
