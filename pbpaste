@@ -1,0 +1,5 @@
+#!/bin/bash
+ssh -n Fred@10.88.88.1 "pbpaste > /tmp/pbpaste" > /dev/null
+scp Fred@10.88.88.1:/tmp/pbpaste /tmp/pbpaste > /dev/null
+ssh -n Fred@10.88.88.1 "rm /tmp/pbpaste" > /dev/null
+cat /tmp/pbpaste && rm /tmp/pbpaste

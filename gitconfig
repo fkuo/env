@@ -1,0 +1,25 @@
+[user]
+        email = fred.kuo@joyent.com
+	name = Fred Kuo
+
+[alias]
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[alias]
+        df = diff --color=auto
+
+[color]
+  ui = auto
+
+[merge]
+  keepBackup = false;
+  tool = ediff
+
+[github]
+        user = fkuo
+        token = github_oauth_token
+
+[core]
+
+[core]
+	editor = vim
