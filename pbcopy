@@ -1,5 +1,2 @@
 #!/bin/bash
-cat > /tmp/pbcopy
-scp /tmp/pbcopy Fred@10.88.88.1:/tmp/pbcopy > /dev/null
-ssh -n Fred@10.88.88.1 "cat /tmp/pbcopy | pbcopy && rm /tmp/pbcopy" > /dev/null
-rm /tmp/pbcopy
+ssh -n Fred@10.88.88.1 "pbcopy" > /dev/null
