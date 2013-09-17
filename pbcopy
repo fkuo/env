@@ -1,2 +1,2 @@
 #!/bin/bash
-ssh -n Fred@10.88.88.1 "pbcopy"
+ssh Fred@10.88.88.1 "pbcopy"
