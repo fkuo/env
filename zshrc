@@ -35,18 +35,53 @@ plugins=(git autojump)
 source $ZSH/oh-my-zsh.sh
 [[ -s /home/dev/.nvm/nvm.sh ]] && . /home/dev/.nvm/nvm.sh # This loads NVM
 
+os=$(uname -s)
+if [ "$os" = "SunOS" ]; then
+  alias vi="vim -O"
+  workspace="$HOME"
+elif [ "$os" = "Darwin" ]; then
+  workspace="$HOME/workspace"
+  alias vi="/Applications/MacVim.App/Contents/MacOS/Vim -O"
+  PATH=/opt/local/libexec/gnubin/:$PATH # if macports is installed
+fi
+
 # Customize to your needs...
-export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/usr/sbin:usr/bin:/bin:~/node-manta/bin:~/bin
+export PATH=${workspace}/bin:${workspace}/node-manta/bin:$PATH
 
-export MANTA_USER=fredkuo
-export MANTA_KEY_ID="e3:4d:9b:26:bd:ef:a1:db:43:ae:4b:f7:bc:69:a7:24"
+# ls options
+ls --version | grep GNU >/dev/null 2>&1 # check for GNU ls
+if [ $? -eq 0 ]; then
+  alias ls="ls --color=auto --group-directories-first"
+else
+  alias ls="ls -G" # assume BSD
+fi
+
+# date options
+date --version | grep GNU >/dev/null 2>&1 # check for GNU date
+if [ $? -eq 0 ]; then
+  alias date="date --rfc-3339=seconds"
+fi
+
+# msu p or msu f
+function msu()
+{
+  if [ "$1" = "p" ]; then
+      export MANTA_URL="https://us-east.manta.joyent.com"
+      export MANTA_USER="poseidon"
+      export MANTA_KEY_ID="f0:22:7b:02:20:26:15:de:22:84:e5:d3:54:ea:b1:8d"
+      echo "poseidon"
+  elif [ "$1" = "f" ]; then
+      export MANTA_URL="https://us-east.manta.joyent.com"
+      export MANTA_KEY_ID="e3:4d:9b:26:bd:ef:a1:db:43:ae:4b:f7:bc:69:a7:24"
+      export MANTA_USER="fredkuo"
+      echo "fredkuo"
+  fi
+}
+export -f msu >/dev/null
+
 export MANTA_URL="https://us-east.manta.joyent.com"
-
-alias muskie="cd ~/muskie && . ./env.sh && node main.js -s -v -f  ~/config/muskie.coal.config.json 2>&1 | bunyan && cd -"
-alias vi="vim -O"
-alias ls="ls --color=auto --group-directories-first"
-alias llh="ls -lh"
-alias date="date --rfc-3339=seconds"
+export MANTA_KEY_ID="e3:4d:9b:26:bd:ef:a1:db:43:ae:4b:f7:bc:69:a7:24"
+export MANTA_USER="fredkuo"
 
 # Disable ctrl+s
 stty -ixon

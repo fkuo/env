@@ -7,13 +7,18 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'marijnh/tern_for_vim'
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'yaifa.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jelera/vim-javascript-syntax'
+
 syntax enable
 set number
 set colorcolumn=81
@@ -38,21 +43,32 @@ set laststatus=2 " always show the status bar
 set encoding=utf-8
 "set t_Co=256 " Explicitly tell Vim that the terminal supports 256 colors
 set nomodeline " don't read modelines
-set ttymouse=sgr " select columns > 223
+if has('mouse_sgr')
+    set ttymouse=sgr " select columns > 223
+endif
+set nojoinspaces " don't insert double space after '.' when joining or gq-ing
 
 " tab completion settings.
 " first tab hit will complete as much as possible
 " the second tab hit will provide a list
 " the third and subsequent tabs will cycle through completion options
-set wildmode=longest,list,full 
+set wildmode=longest,list,full
 set wildmenu
 
+set background=dark
 "set background=dark
-"colorscheme solarized
-highlight colorcolumn ctermbg=black
-highlight clear cursorline
-highlight cursorline gui=underline guisp=black ctermbg=black
-highlight clear SignColumn
+let g:solarized_termcolors=256
+let g:solarized_termcolors = 16
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+colorscheme solarized
+highlight colorcolumn ctermbg=0
+highlight cursorline ctermbg=0
+highlight SignColumn ctermbg=8
+highlight LineNr ctermbg=8 ctermfg=10
+"highlight clear SignColumn
+"highlight clear cursorline
+"highlight cursorline guisp=lightgrey ctermbg=lightgrey
 "highlight SignColumn ctermfg=10 ctermbg=0 guifg=Yellow
 "highlight clear LineNr
 "highlight LineNr ctermfg=grey
