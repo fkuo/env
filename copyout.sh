@@ -11,4 +11,5 @@ copyifdiff gitconfig ~/.gitconfig
 copyifdiff zshrc ~/.zshrc
 copyifdiff fred.zsh-theme ~/.oh-my-zsh/themes/fred.zsh-theme
 copyifdiff profile ~/.profile
+copyifdiff ~/.jshintrc jshintrc
 copyifdiff vimrc ~/.vimrc
